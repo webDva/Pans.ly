@@ -1,8 +1,16 @@
 {
-    "name": "Pansly",
-    "version": "1.0.0",
-    "keywords": ["util", "functional", "server", "client", "browser"],
-    "author": "jeast",
-    "contributors": [],
-    "dependencies": {}
+  "name": "Pansly",
+  "version": "1.0.0",
+  "keywords": [
+    "util",
+    "functional",
+    "server",
+    "client",
+    "browser"
+  ],
+  "author": "jeast",
+  "contributors": [],
+  "dependencies": {
+    "express": "^4.14.1"
+  }
 }
