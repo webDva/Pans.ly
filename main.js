@@ -22,10 +22,8 @@ router.use(function (req, res, next) {
  */
 
 
-router.route('/shorten/:url')
+router.route('/shorten/*') // had to use a wildcard, API user will have to use ?url=url.com
         .post(function(req, res) {
-            url = req.params.url;
-    
             // now to shorten the URL. just create a new string is all, lol
             alphabet = 'abcdefghijklmnopqrstuvwxyz';
             newUrl = '';
@@ -33,8 +31,13 @@ router.route('/shorten/:url')
                 newUrl += alphabet[Math.floor(Math.random() * alphabet.length)];
             }
             
+            hash = {}; // JSON object for the client
+            
+            hash.longUrl = req.query.url;
+            hash.shortUrl = newUrl;
+            
             // for now, just return it in the response for the client to decide
-            res.send(newUrl);
+            res.send(hash);
 });
 
 app.use('/api', router); // might as well prefix with '/api'
