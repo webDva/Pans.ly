@@ -27,7 +27,14 @@ router.route('/shorten/:url')
             url = req.params.url;
     
             // now to shorten the URL. just create a new string is all, lol
+            alphabet = 'abcdefghijklmnopqrstuvwxyz';
+            newUrl = '';
+            for (i = 0; i < 7; i++) {
+                newUrl += alphabet[Math.floor(Math.random() * alphabet.length)];
+            }
             
+            // for now, just return it in the response for the client to decide
+            res.send(newUrl);
 });
 
 app.use('/api', router); // might as well prefix with '/api'
