@@ -2,3 +2,11 @@ body {
     background-color: darkcyan;
     color: cornsilk;
 }
+
+h1 { /* for the Pans.ly header */
+    text-align: center;
+}
+
+button {
+    margin: 20px;
+}
