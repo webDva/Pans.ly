@@ -7,23 +7,18 @@
         <!-- includes -->
         <script src="angular.min.js"></script>
         <script src="app.module.js"></script>
+
+        <script src="client/client.module.js"></script>
+        <script src="client/client.component.js"></script>
+
         <script src="results/results.module.js"></script>
         <script src="results/results.component.js"></script>
+
         <link rel="stylesheet" href="style.css">
 
         <title>Pans.ly</title>
     </head>
     <body>
-        
-        <div class="centerContainer">
-            <h1>Pans.ly - URL Shortener</h1>
-            <form id="yourURL">
-                URL: <input form="yourURL" autofocus></br>
-                <div class="buttonContainer">
-                    <button name="submit">submit</button>
-                </div>
-            </form>
-        </div>
-        <results></results>
+        <client></client>
     </body>
 </html>
