@@ -10,6 +10,17 @@ h1 { /* for the Pans.ly header */
 
 button {
     margin: 20px;
+    border-radius: 6px;
+    background-color: coral;
+    font-size: 20px;
+    border: none;
+    color: azure;
+}
+
+input {
+    border-radius: 6px;
+    background-color: darkseagreen;
+    color: cornsilk;
 }
 
 .centerContainer {
