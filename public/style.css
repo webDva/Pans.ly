@@ -1,6 +1,7 @@
 body {
     background-color: darkcyan;
     color: cornsilk;
+    font-family: 'Annie Use Your Telescope', cursive;
 }
 
 h1 { /* for the Pans.ly header */
