@@ -11,10 +11,16 @@ h1 { /* for the Pans.ly header */
 button {
     margin: 20px;
     border-radius: 6px;
-    background-color: coral;
+    background-color: blueviolet;
     font-size: 20px;
     border: none;
     color: azure;
+    box-shadow: 4px 4px darkslategray;
+}
+
+button:hover {
+    background-color: coral;
+    box-shadow: 2px 2px darkslategray;
 }
 
 input {
