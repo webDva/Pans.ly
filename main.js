@@ -40,6 +40,11 @@ router.route('/shorten/*') // had to use a wildcard, API user will have to use ?
             res.send(hash);
 });
 
+router.route('/createEntry/:shortUrl')
+        .post(function(req, res) {
+            
+});
+
 app.use('/api', router); // might as well prefix with '/api'
 
 app.listen(3000, function () {
