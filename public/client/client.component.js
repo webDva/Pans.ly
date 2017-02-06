@@ -7,9 +7,7 @@ angular.module('client')
 
                 this.shortenUrl = function () {
                     $http.post('/api/shorten/?url=' + this.userUrl, {
-                        method: 'POST',
-                        url: '/api/shorten/?url=' + this.userUrl,
-                        data: '' // don't know about this stray thing
+                        method: 'POST'
                     }).then(function successCallback(response) {
                         console.log(response);
                     }, function errorCallback(response) {
