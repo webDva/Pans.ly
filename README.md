@@ -10,3 +10,16 @@ The frontend uses Angular to perform the GET and POST requests and to perform so
 
 # No authentication and HTTPS
 To decrease development time, no authentication like OAuth is used and no SSL as that would increase the scope and complexitity for me in my currently low-level web dev state.
+
+# API features
+
+`/api/shorten/?url=` takes a URL to create a hash for inserting a new entry into a database. The Pans.ly database has a table `urls` that looks like this:
+
+```
+CREATE TABLE urls (
+  long_name varchar(80),
+  short_name varchar(80)
+);
+```
+
+where `long_name` is the URL to redirect to and `short_name` is the new URL pointer, e.g., `http://pans.ly/dv2dj9`.
