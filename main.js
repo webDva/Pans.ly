@@ -3,7 +3,7 @@ var app = express();
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 
 var router = express.Router();
 
@@ -46,7 +46,7 @@ router.route('/shorten/*') // had to use a wildcard, API user will have to use ?
             res.send(hash);
         });
 
-router.route('/createEntry') // will have to use ?longUrl=foo.com/fu&shortUrl=bar
+router.route('/createEntry')
         .post(function (req, res) {
             /*
              * You have to create a database named pansly, because I don't want to
@@ -79,12 +79,13 @@ router.route('/createEntry') // will have to use ?longUrl=foo.com/fu&shortUrl=ba
                     });
                 });
             });
-            
-            res.send(req.body);
+
+            res.send(req.body); // just to not leave the client hanging
+            // the client won't actually use this
         });
 
 app.use('/api', router); // might as well prefix with '/api'
 
 app.listen(3000, function () {
-    console.log('on port 3000');
+    console.log('Pans.ly API server listening on port 3000');
 });
