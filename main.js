@@ -4,30 +4,6 @@ var app = express();
 var router = express.Router();
 
 var pg = require('pg');
-/*
- * TEST FOR USING PG
- */
-
-/*
- * yucky, yucky, yucky: at least you don't have to enter a password. this works by stroke of luck, i think.
- * i can't set PostgreSQL environment variables (don't know how to)
- */
-var client = new pg.Client('postgres://postgres@localhost:5432/pansly');
-
-
-client.connect(function(err) {
-    if (err) throw err;
-    
-    client.query('SELECT * FROM urls', function(err, result) {
-        if (err) throw err;
-        
-        console.log(result);
-        
-        client.end(function(err) {
-            if (err) throw err;
-        });
-    });
-});
 
 app.use(express.static('public')); // no jade, read the docs
 
@@ -49,30 +25,60 @@ router.use(function (req, res, next) {
 
 
 router.route('/shorten/*') // had to use a wildcard, API user will have to use ?url=url.com
-        .post(function(req, res) {
+        .post(function (req, res) {
             // now to shorten the URL. just create a new string is all, lol
             alphabet = 'abcdefghijklmnopqrstuvwxyz';
             newUrl = '';
             for (i = 0; i < 7; i++) {
                 newUrl += alphabet[Math.floor(Math.random() * alphabet.length)];
             }
-            
+
             hash = {}; // JSON object for the client
-            
+
             hash.longUrl = req.query.url;
             hash.shortUrl = newUrl;
-            
+
             // for now, just return it in the response for the client to decide
             res.send(hash);
-});
+        });
 
-router.route('/createEntry/:shortUrl')
-        .post(function(req, res) {
-            
-});
+router.route('/createEntry/:longUrl/:shortUrl')
+        .post(function (req, res) {
+            /*
+             * You have to create a database named pansly, because I don't want to
+             * write code to create a database here.
+             * 
+             * Pans.ly database looks like so:
+             * CREATE TABLE urls (
+             *      long_name       varchar(80),
+             *      short_name      varchar(80),
+             *      creation_time   date            -- optional, for if we want to delete all entries older than 24 hours
+             * );
+             */
+
+            client = new pg.Client('postgres://postgres@localhost:5432/pansly');
+
+            client.connect(function (err) {
+                if (err)
+                    throw err;
+
+                client.query('INSERT INTO urls (long_name, short_name) VALUES ($1, $2)',
+                        [req.params.longUrl, req.params.shortUrl], function (err, result) {
+                    if (err)
+                        throw err;
+
+                    console.log(result);
+
+                    client.end(function (err) {
+                        if (err)
+                            throw err;
+                    });
+                });
+            });
+        });
 
 app.use('/api', router); // might as well prefix with '/api'
 
 app.listen(3000, function () {
-  console.log('on port 3000');
+    console.log('on port 3000');
 });
