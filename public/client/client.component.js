@@ -14,5 +14,15 @@ angular.module('client')
                         console.log(response);
                     });
                 };
+
+                this.createEntry = function (longUrl, shortUrl) {
+                    $http.post('/api/createEntry/' + longUrl + '/' + shortUrl, {
+                        method: 'POST'
+                    }).then(function successCallback(response) {
+                        console.log(response);
+                    }, function errorCallback(response) {
+                        console.log(response);
+                    });
+                };
             }
         });
