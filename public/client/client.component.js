@@ -11,8 +11,9 @@ angular.module('client')
                         method: 'POST'
                     }).then(function successCallback(response) {
                         console.log(response);
-                        $http.post('/api/createEntry/?longUrl=' + response.data.longUrl + '&shortUrl=' + response.data.shortUrl, {
-                            method: 'POST'
+                        $http.post('/api/createEntry', {
+                            method: 'POST',
+                            data: "longUrl=" + response.data.longUrl + "&shortUrl=" + response.data.shortUrl
                         }).then(function successCallback(response) {
                             console.log(response);
                         }, function errorCallback(response) {
