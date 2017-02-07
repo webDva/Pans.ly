@@ -4,12 +4,14 @@ angular.module('client')
             controller: function ClientController($http) {
                 this.who = 'wa';
                 this.userUrl;
+                this.httpResponse;
 
                 this.shortenUrl = function () {
                     $http.post('/api/shorten/?url=' + this.userUrl, {
                         method: 'POST'
                     }).then(function successCallback(response) {
                         console.log(response);
+                        this.httpResponse = response;
                     }, function errorCallback(response) {
                         console.log(response);
                     });
@@ -23,6 +25,11 @@ angular.module('client')
                     }, function errorCallback(response) {
                         console.log(response);
                     });
+                };
+                
+                this.giveUrl = function() {
+                    this.shortenUrl();
+                    this.createEntry(this.httpResponse.data.longUrl, this.httpResponse.data.shortUrl);
                 };
             }
         });
