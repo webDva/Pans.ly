@@ -3,6 +3,32 @@ var app = express();
 
 var router = express.Router();
 
+var pg = require('pg');
+/*
+ * TEST FOR USING PG
+ */
+
+/*
+ * yucky, yucky, yucky: at least you don't have to enter a password. this works by stroke of luck, i think.
+ * i can't set PostgreSQL environment variables (don't know how to)
+ */
+var client = new pg.Client('postgres://postgres@localhost:5432/pansly');
+
+
+client.connect(function(err) {
+    if (err) throw err;
+    
+    client.query('SELECT * FROM urls', function(err, result) {
+        if (err) throw err;
+        
+        console.log(result);
+        
+        client.end(function(err) {
+            if (err) throw err;
+        });
+    });
+});
+
 app.use(express.static('public')); // no jade, read the docs
 
 router.use(function (req, res, next) {
