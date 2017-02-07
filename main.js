@@ -1,6 +1,10 @@
 var express = require('express');
 var app = express();
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 var router = express.Router();
 
 var pg = require('pg');
@@ -42,7 +46,7 @@ router.route('/shorten/*') // had to use a wildcard, API user will have to use ?
             res.send(hash);
         });
 
-router.route('/createEntry/*') // will have to use ?longUrl=foo.com/fu?shortUrl=bar
+router.route('/createEntry/*/') // will have to use ?longUrl=foo.com/fu&shortUrl=bar
         .post(function (req, res) {
             /*
              * You have to create a database named pansly, because I don't want to
