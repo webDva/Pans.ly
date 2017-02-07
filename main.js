@@ -42,7 +42,7 @@ router.route('/shorten/*') // had to use a wildcard, API user will have to use ?
             res.send(hash);
         });
 
-router.route('/createEntry/:longUrl/:shortUrl')
+router.route('/createEntry/*') // will have to use ?longUrl=foo.com/fu?shortUrl=bar
         .post(function (req, res) {
             /*
              * You have to create a database named pansly, because I don't want to
@@ -63,7 +63,7 @@ router.route('/createEntry/:longUrl/:shortUrl')
                     throw err;
 
                 client.query('INSERT INTO urls (long_name, short_name) VALUES ($1, $2)',
-                        [req.params.longUrl, req.params.shortUrl], function (err, result) {
+                        [req.query.longUrl, req.query.shortUrl], function (err, result) {
                     if (err)
                         throw err;
 

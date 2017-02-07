@@ -11,25 +11,16 @@ angular.module('client')
                         method: 'POST'
                     }).then(function successCallback(response) {
                         console.log(response);
-                        this.httpResponse = response;
+                        $http.post('/api/createEntry/?longUrl=' + response.data.longUrl + '?shortUrl=' + response.data.shortUrl, {
+                            method: 'POST'
+                        }).then(function successCallback(response) {
+                            console.log(response);
+                        }, function errorCallback(response) {
+                            console.log(response);
+                        });
                     }, function errorCallback(response) {
                         console.log(response);
                     });
-                };
-
-                this.createEntry = function (longUrl, shortUrl) {
-                    $http.post('/api/createEntry/' + longUrl + '/' + shortUrl, {
-                        method: 'POST'
-                    }).then(function successCallback(response) {
-                        console.log(response);
-                    }, function errorCallback(response) {
-                        console.log(response);
-                    });
-                };
-                
-                this.giveUrl = function() {
-                    this.shortenUrl();
-                    this.createEntry(this.httpResponse.data.longUrl, this.httpResponse.data.shortUrl);
                 };
             }
         });
