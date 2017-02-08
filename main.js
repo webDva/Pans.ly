@@ -66,7 +66,6 @@ router.route('/createEntry')
                 if (err)
                     throw err;
 
-                    debugger;
                 client.query('INSERT INTO urls (long_name, short_name) VALUES ($1, $2)',
                         [req.body.data.longUrl, req.body.data.shortUrl],
                         function (err, result) {
