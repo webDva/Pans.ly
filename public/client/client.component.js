@@ -12,7 +12,7 @@ angular.module('client')
                                 console.log(response);
                                 $http.post('/api/createEntry', {
                                     method: 'POST',
-                                    data: "longUrl=" + response.data.longUrl + "&shortUrl=" + response.data.shortUrl
+                                    data: {longUrl: response.data.longUrl, shortUrl: response.data.shortUrl}
                                 })
                                         .then(function successCallback(response) {
                                             console.log(response);

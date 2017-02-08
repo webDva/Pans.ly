@@ -66,18 +66,20 @@ router.route('/createEntry')
                 if (err)
                     throw err;
 
+                    debugger;
                 client.query('INSERT INTO urls (long_name, short_name) VALUES ($1, $2)',
-                        [req.body.longUrl, req.body.shortUrl], function (err, result) {
-                    if (err)
-                        throw err;
+                        [req.body.data.longUrl, req.body.data.shortUrl],
+                        function (err, result) {
+                            if (err)
+                                throw err;
 
-                    console.log(result);
+                            console.log(result);
 
-                    client.end(function (err) {
-                        if (err)
-                            throw err;
-                    });
-                });
+                            client.end(function (err) {
+                                if (err)
+                                    throw err;
+                            });
+                        });
             });
 
             res.send(req.body); // just to not leave the client hanging
