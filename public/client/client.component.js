@@ -1,7 +1,7 @@
 angular.module('client')
         .component('client', {
             templateUrl: 'client/client.template.html',
-            controller: function ClientController($http, UserData, $scope) {
+            controller: function ClientController($http, UserData, $scope, $location) {
                 $scope.Client = UserData;
 
                 this.shortenUrl = function () {
@@ -11,7 +11,7 @@ angular.module('client')
                             .then(function successCallback(response) {
                                 console.log(response);
                                 $scope.Client.UsersLongUrl = response.data.longUrl;
-                                $scope.Client.UsersShortUrl = response.data.shortUrl;
+                                $scope.Client.UsersShortUrl = $location.protocol() + '://' + $location.host() + '/' + response.data.shortUrl;
                                 $http.post('/api/createEntry', {
                                     method: 'POST',
                                     data: {longUrl: response.data.longUrl, shortUrl: response.data.shortUrl}
