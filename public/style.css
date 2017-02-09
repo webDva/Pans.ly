@@ -43,3 +43,8 @@ input {
     justify-content: center;
     align-items: center;
 }
+
+#results {
+    font-family: monospace;
+    font-size: 28px;
+}
