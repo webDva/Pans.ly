@@ -1,8 +1,8 @@
 angular.module('client')
         .component('client', {
             templateUrl: 'client/client.template.html',
-            controller: function ClientController($http) {
-                this.userUrl;
+            controller: function ClientController($http, UserData) {
+                this.Client = UserData;
 
                 this.shortenUrl = function () {
                     $http.post('/api/shorten/?url=' + this.userUrl, {
