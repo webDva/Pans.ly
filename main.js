@@ -96,7 +96,7 @@ router.route('/getURL/:shortUrl') // need to do something about route prefixes--
                             if (err)
                                 throw err;
 
-                            res.send(result.rows[0].long_name);
+                            res.redirect(result.rows[0].long_name);
 
                             client.end(function (err) {
                                 if (err)
