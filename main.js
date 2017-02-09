@@ -82,7 +82,32 @@ router.route('/createEntry')
             });
 
             res.send(req.body); // just to not leave the client hanging
-            // the client won't actually use this
+        });
+
+router.route('/getURL/:shortUrl')
+        .get(function (req, res) {
+            client = new pg.Client('postgres://postgres@localhost:5432/pansly');
+
+            client.connect(function (err) {
+                if (err)
+                    throw err;
+
+                client.query('SELECT DISTINCT long_name FROM urls WHERE short_name=$1',
+                        [req.params.shortUrl],
+                        function (err, result) {
+                            if (err)
+                                throw err;
+
+                            console.log(result.rows[0]);
+
+                            client.end(function (err) {
+                                if (err)
+                                    throw err;
+                            });
+                        });
+            });
+
+            res.send(req.body);
         });
 
 app.use('/api', router); // might as well prefix with '/api'
