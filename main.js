@@ -82,7 +82,7 @@ router.route('/createEntry')
             res.send(req.body); // just to not leave the client hanging
         });
 
-router.route('/getURL/:shortUrl') // need to do something about route prefixes
+router.route('/getURL/:shortUrl') // need to do something about route prefixes--or not
         .get(function (req, res) {
             client = new pg.Client('postgres://postgres@localhost:5432/pansly');
 
