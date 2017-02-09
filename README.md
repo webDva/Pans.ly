@@ -23,3 +23,10 @@ CREATE TABLE urls (
 ```
 
 where `long_name` is the URL to redirect to and `short_name` is the new URL pointer, e.g., `http://pans.ly/dv2dj9`.
+
+# Installation and Setup
+I think that since it's a Netbeans project, you can simply import this.
+
+If you're not going to use Netbeans, you can still use Node.js on `main.js` and then use the URL `http://localhost:3000` to use Pans.ly.
+
+Also, you have to create a PostgreSQL database named `pansly` with the user `postgres` or change the `pg.client` connection string parameter instead.
