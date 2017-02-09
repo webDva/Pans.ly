@@ -11,7 +11,8 @@ angular.module('client')
                             .then(function successCallback(response) {
                                 console.log(response);
                                 $scope.Client.UsersLongUrl = response.data.longUrl;
-                                $scope.Client.UsersShortUrl = $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/' + response.data.shortUrl;
+                                // lol, this really isn't short!
+                                $scope.Client.UsersShortUrl = $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/api/geturl/' + response.data.shortUrl;
                                 $http.post('/api/createEntry', {
                                     method: 'POST',
                                     data: {longUrl: response.data.longUrl, shortUrl: response.data.shortUrl}

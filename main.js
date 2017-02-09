@@ -72,8 +72,6 @@ router.route('/createEntry')
                             if (err)
                                 throw err;
 
-                            console.log(result);
-
                             client.end(function (err) {
                                 if (err)
                                     throw err;
@@ -98,7 +96,6 @@ router.route('/getURL/:shortUrl') // need to do something about route prefixes
                             if (err)
                                 throw err;
 
-                            console.log(result.rows[0].long_name);
                             res.send(result.rows[0].long_name);
 
                             client.end(function (err) {
