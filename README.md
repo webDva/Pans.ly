@@ -29,6 +29,6 @@ where `long_name` is the URL to redirect to and `short_name` is the new URL poin
 # Installation and Setup
 I think that since it's a Netbeans project, you can simply import this.
 
-If you're not going to use Netbeans, you can still use Node.js on `main.js` and then use the URL `http://localhost:3000` to use Pans.ly.
+If you're not going to use Netbeans, you can still use Node.js on `main.js` and then use the URL `http://localhost:3000` to use Pans.ly. Make sure to run `npm install` first, as I didn't track the node_modules directory changes.
 
 Also, you have to create a PostgreSQL database named `pansly` with the user `postgres` or change the `pg.client` connection string parameter instead. You have to also create the `urls` table mentioned above.
