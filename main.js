@@ -96,7 +96,12 @@ router.route('/getURL/:shortUrl') // need to do something about route prefixes--
                             if (err)
                                 throw err;
 
-                            res.redirect(result.rows[0].long_name);
+                            // thank goodness!
+                            if (result.rows[0].long_name.match(/^http:\/\//) || result.rows[0].long_name.match(/^https:\/\//)) {
+                                res.redirect(result.rows[0].long_name);
+                            } else {
+                                res.redirect('http://' + result.rows[0].long_name);
+                            }
 
                             client.end(function (err) {
                                 if (err)
