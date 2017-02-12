@@ -114,6 +114,6 @@ router.route('/getURL/:shortUrl') // need to do something about route prefixes--
 
 app.use('/api', router); // might as well prefix with '/api'
 
-app.listen(3000, function () {
+app.listen(process.env.PORT || 3000, function () {
     console.log('Pans.ly API server listening on port 3000');
 });
