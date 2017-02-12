@@ -60,7 +60,7 @@ router.route('/createEntry')
              * );
              */
 
-            client = new pg.Client('postgres://postgres@localhost:5432/pansly');
+            client = new pg.Client(process.env.DATABASE_URL || 'postgres://postgres@localhost:5432/pansly');
 
             client.connect(function (err) {
                 if (err)
@@ -84,7 +84,7 @@ router.route('/createEntry')
 
 router.route('/getURL/:shortUrl') // need to do something about route prefixes--or not
         .get(function (req, res) {
-            client = new pg.Client('postgres://postgres@localhost:5432/pansly');
+            client = new pg.Client(process.env.DATABASE_URL || 'postgres://postgres@localhost:5432/pansly');
 
             client.connect(function (err) {
                 if (err)
